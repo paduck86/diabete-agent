@@ -1,15 +1,8 @@
-# Using the Ubuntu image (our OS)
-FROM ubuntu:latest
-# Update package manager (apt-get) 
-# and install (with the yes flag `-y`)
-# Python and Pip
+FROM nginx:1.24.0
 RUN apt-get update && apt-get install -y \
-    python3.8 \
-    python3-pip
+    nodejs=18.12.0 \
+    npm
 
-# =====
-# The new stuff is below
-# =====
 
-# Install our Python dependencies
-RUN pip install Requests Pygments
+WORKDIR /usr/src/app
+COPY . /usr/src/app
